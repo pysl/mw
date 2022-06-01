@@ -1,6 +1,6 @@
 using System.Runtime.InteropServices;
 using System.Diagnostics.CodeAnalysis;
-using IWshRuntimeLibrary;
+
 
 using System;
 namespace mw.utils {
@@ -30,12 +30,9 @@ namespace mw.utils {
         {
             return System.IO.Directory.GetCurrentDirectory();
         }
-        public static void makeShortcut(string path, string target) {
-            var shell = new WshShell();
-            var windowsApplicationShortcut = (IWshShortcut)shell.CreateShortcut(path);
-            windowsApplicationShortcut.Description = "How to create short for application example";
-            windowsApplicationShortcut.TargetPath = path;
-            windowsApplicationShortcut.Save();
+
+        public static string generateFileName() {
+            return Guid.NewGuid().ToString().Substring(0, 5);
         }
 
     }
