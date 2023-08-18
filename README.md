@@ -1,6 +1,6 @@
 # MW RAT
 
-This is a simple RAT payload for remote access to a victim's machine written in C#.
+This is a simple RAT payload for remote access to a target's machine written in C#.
 
 ---
 
